@@ -9,7 +9,7 @@ int main()
 {
     cout << lengthOfLongestSubstring("abcabcbb") << endl;
     cout << lengthOfLongestSubstring("bbbb") << endl;
-    cout << lengthOfLongestSubstring("pwwkew") << endl;
+    cout << lengthOfLongestSubstring("pwwkewa") << endl;
     return 0;
 }
 
@@ -20,17 +20,16 @@ int lengthOfLongestSubstring(string s)
     string charSet = "" ;
     for(int i=0;i<s.length();i++)
     {
-        for(int j=0;j<charSet.length();j++)
+        int tPos=i;
+        while(charSet.find(s[tPos])==string::npos && tPos<s.length())
         {
-            if(s[i]==charSet[j])
-            {
-                if(longestLeng<leng)
-                    longestLeng = leng;
-                charSet.clear();
-                leng = 0;
-                break;
-            }
+            charSet.push_back(s[tPos]);
+            tPos++;
+            leng++;
         }
+        charSet.clear();
+        longestLeng = leng>longestLeng ? leng : longestLeng ;
+        leng = 0 ;
     }
-    return 0 ;
+    return longestLeng ;
 }
